@@ -12,11 +12,11 @@
 </svelte:head>
 
 <div class="flex flex-col gap-10 md:gap-20">
-	<!-- IF USER IS NOT LOGGED IN -->
-	{#if !$currentUser}
-		NOT LOGGED IN
-		<!-- IF USER IS LOGGED IN -->
-	{:else}
-		<div>LOGGED IN</div>
-	{/if}
+	<div>
+		{#if !$currentUser}
+			NOT LOGGED IN
+		{:else}
+			<div>LOGGED IN</div>
+		{/if}
+	</div>
 </div>

@@ -5,7 +5,6 @@
 	import { Input } from '$lib/components/ui/input';
 	import { siteInfo } from '$lib/data.js';
 	import { loginUserSchema } from '$lib/schema';
-	import Icon from '@iconify/svelte';
 	import { toast } from 'svelte-sonner';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
@@ -36,8 +35,7 @@
 		<div class="w-full max-w-xs">
 			<div class="contact-header flex flex-col items-start gap-2">
 				<div class="flex w-full items-center justify-center gap-5">
-					<div class="text-5xl font-bold lowercase">Login</div>
-					<Icon icon="material-symbols:login" class="contact-title-icon text-5xl" />
+					<div class="text-5xl font-bold">Login</div>
 				</div>
 			</div>
 		</div>
@@ -84,23 +82,19 @@
 			</Form.Field>
 
 			<div class="mt-5">
-				<a href="/auth/reset-password">forgot password?</a>
+				<a href="/auth/reset-password">Passwort vergessen?</a>
 
 				<Form.Button disabled={isSubmitting} size="lg" class="group/sendButton mt-2 w-full">
 					<div class="flex items-center gap-2">
-						<div class="lowercase">login</div>
-						<Icon
-							icon={`${isSubmitting ? 'mingcute:loading-fill' : 'material-symbols:login'}`}
-							class={`${isSubmitting ? 'animate-spin' : ''} h-5 w-5 transition-transform duration-300 lg:group-hover/sendButton:translate-x-1`}
-						/>
+						<div class="">Login</div>
 					</div>
 				</Form.Button>
 			</div>
 
 			<p class="mt-5 text-center text-sm text-muted-foreground">
-				Don't have an account? <a
+				Noch keinen Account? <a
 					href="/auth/register"
-					class="underline underline-offset-4 hover:text-primary">Register</a
+					class="underline underline-offset-4 hover:text-primary">Jetzt registrieren</a
 				>
 			</p>
 		</form>

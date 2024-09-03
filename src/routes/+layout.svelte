@@ -3,10 +3,10 @@
 	import Footer from '$lib/components/ui/Footer.svelte';
 	import Nav from '$lib/components/ui/Nav.svelte';
 	import { Toaster } from '$lib/components/ui/sonner';
-	import Toast from '$lib/components/ui/Toast.svelte';
-	import { toast } from '$lib/stores/toast';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
+
+	export let data;
 
 	onNavigate((navigation) => {
 		// @ts-ignore
@@ -23,15 +23,16 @@
 	// END VIEW TRANSITIONS API
 </script>
 
-<ModeWatcher defaultMode={'dark'} />
+<ModeWatcher defaultMode={'light'} />
 <Toaster position="bottom-right" richColors={false} />
-<Toast icon={$toast.icon} type={$toast.type} message={$toast.message} show={$toast.show} />
 
-<div class="flex min-h-[calc(100svh)] flex-col md:min-h-screen">
-	<Nav />
-	<main class="mx-auto my-5 w-full max-w-5xl flex-grow overflow-x-clip px-2 md:my-10">
-		<slot />
-	</main>
+<div class="flex min-h-screen flex-col md:min-h-screen">
+	<Nav notifications={data.notifications} />
+	<div class="mx-auto my-5 flex w-full flex-grow flex-col overflow-x-clip px-12 md:my-10">
+		<div class="flex grow flex-col items-center">
+			<slot />
+		</div>
+	</div>
 	<Footer />
 </div>
 

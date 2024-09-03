@@ -5,8 +5,8 @@
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import { pb } from '$lib/pocketbase';
 	import { currentUser } from '$lib/stores/user';
-	import Icon from '@iconify/svelte';
 	import { gsap } from 'gsap';
+	import { Lock, LogOut, PersonStanding } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 
 	function handleLogout() {
@@ -57,22 +57,11 @@
 		<DropdownMenu.Group>
 			<DropdownMenu.Item>
 				<a
-					href="/my/settings/profile"
-					data-sveltekit-preload-data="hover"
-					class="flex w-full items-center"
-				>
-					<Icon icon="mdi:account" class="mr-2 h-4 w-4" />
-					<span>Profile</span>
-				</a>
-			</DropdownMenu.Item>
-
-			<DropdownMenu.Item>
-				<a
 					href="/my/settings/account"
 					data-sveltekit-preload-data="hover"
 					class="flex w-full items-center"
 				>
-					<Icon icon="mdi:settings" class="mr-2 h-4 w-4" />
+					<PersonStanding />
 					<span>Account</span>
 				</a>
 			</DropdownMenu.Item>
@@ -83,7 +72,7 @@
 					data-sveltekit-preload-data="hover"
 					class="flex w-full items-center"
 				>
-					<Icon icon="material-symbols:lock-outline" class="mr-2 h-4 w-4" />
+					<Lock />
 					<span>Security</span>
 				</a>
 			</DropdownMenu.Item>
@@ -98,7 +87,7 @@
 				aria-label="Logout"
 			>
 				<button type="submit" class="flex w-full items-center">
-					<Icon icon="mdi:logout" class="mr-2 h-4 w-4" />
+					<LogOut />
 					<span>Logout</span>
 				</button>
 			</form>

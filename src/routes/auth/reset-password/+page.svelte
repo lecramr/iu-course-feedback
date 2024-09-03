@@ -5,7 +5,6 @@
 	import { Input } from '$lib/components/ui/input';
 	import { siteInfo } from '$lib/data.js';
 	import { resetPasswordSchema } from '$lib/schema';
-	import Icon from '@iconify/svelte';
 	import { onDestroy } from 'svelte';
 	import { toast } from 'svelte-sonner';
 	import { superForm } from 'sveltekit-superforms';
@@ -44,7 +43,7 @@
 		<div class="w-full max-w-xs">
 			<div class="contact-header flex flex-col items-start gap-2">
 				<div class="flex w-full items-center justify-center gap-5">
-					<div class="text-5xl font-bold lowercase">pw reset</div>
+					<div class="text-5xl font-bold">Passwort vergessen</div>
 					<!-- <Icon icon="material-symbols:login" class="contact-title-icon text-5xl" /> -->
 				</div>
 			</div>
@@ -90,19 +89,15 @@
 
 				<Form.Button disabled={isSubmitting} size="lg" class="group/sendButton w-full">
 					<div class="flex items-center gap-2">
-						<div class="lowercase">send reset link</div>
-						<Icon
-							icon={`${isSubmitting ? 'mingcute:loading-fill' : 'mdi:send'}`}
-							class={`${isSubmitting ? 'animate-spin' : ''} h-5 w-5 transition-transform duration-300 lg:group-hover/sendButton:translate-x-1`}
-						/>
+						<div class="">Absenden</div>
 					</div>
 				</Form.Button>
 			</div>
 
 			<p class="mt-5 text-center text-sm text-muted-foreground">
-				Don't have an account? <a
+				Noch keinen Account? <a
 					href="/auth/register"
-					class="underline underline-offset-4 hover:text-primary">Register</a
+					class="underline underline-offset-4 hover:text-primary">Jetzt registrieren</a
 				>
 			</p>
 		</form>

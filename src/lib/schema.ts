@@ -60,6 +60,51 @@ export const loginUserSchema = z.object({
 export type LoginUserSchema = typeof loginUserSchema;
 
 // ------------------------------
+// ADD TICKET
+// ------------------------------
+export const addIncidentSchema = z.object({
+	title: z.string().min(1).max(100),
+	description: z.string().min(1).max(2500),
+	courseId: z.string().min(15).max(15),
+	materialId: z.string().min(15).max(15)
+});
+
+export type AddIncidentSchema = typeof addIncidentSchema;
+
+// ------------------------------
+// EDIT TICKET AS STUDENT
+// ------------------------------
+export const editIncidentSchema = z.object({
+	title: z.string().min(1).max(100),
+	description: z.string().min(1).max(2500)
+});
+
+export type EditIncidentSchema = typeof editIncidentSchema;
+
+// ------------------------------
+// EDIT TICKET AS TESACHER
+// ------------------------------
+export const editIncidentAsTeacherSchema = z.object({
+	title: z.string().min(1).max(100),
+	description: z.string().min(1).max(2500),
+	courseId: z.string().min(15).max(15),
+	assigneeId: z.string().min(15).max(15),
+	status: z.string().min(1).max(30)
+});
+
+export type EditIncidentAsTeacherSchema = typeof editIncidentAsTeacherSchema;
+
+// ------------------------------
+// ADD COMMENT
+// ------------------------------
+export const addComment = z.object({
+	body: z.string().min(1).max(1000),
+	isInternal: z.boolean().default(false)
+});
+
+export type AddComment = typeof addComment;
+
+// ------------------------------
 // UPDATE PASSWORD
 // ------------------------------
 export const updatePasswordSchema = z

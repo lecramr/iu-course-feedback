@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
-	import { getImageURL } from '$lib/utils';
 	import { currentUser } from '$lib/stores/user';
+	import { getImageURL } from '$lib/utils';
 </script>
 
-<Avatar.Root class="">
+<Avatar.Root class="border border-primary">
 	<Avatar.Image
 		class="transition-transform duration-200 ease-in-out hover:scale-105"
 		src={$currentUser?.avatar
@@ -12,5 +12,5 @@
 			: `https://ui-avatars.com/api/?name=${$currentUser?.email}`}
 		alt="User avatar"
 	/>
-	<Avatar.Fallback>CN</Avatar.Fallback>
+	<Avatar.Fallback class="text-foreground">CN</Avatar.Fallback>
 </Avatar.Root>

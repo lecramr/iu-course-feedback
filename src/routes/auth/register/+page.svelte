@@ -4,7 +4,6 @@
 	import { Input } from '$lib/components/ui/input';
 	import { siteInfo } from '$lib/data.js';
 	import { registerUserSchema } from '$lib/schema';
-	import Icon from '@iconify/svelte';
 	import { onDestroy } from 'svelte';
 	import { toast } from 'svelte-sonner';
 	import { fade } from 'svelte/transition';
@@ -44,8 +43,7 @@
 		<div class="w-full max-w-xs">
 			<div class="contact-header flex flex-col items-start gap-2">
 				<div class="flex w-full items-center justify-center gap-5">
-					<div class="text-5xl font-bold lowercase">Register</div>
-					<Icon icon="material-symbols:login" class="contact-title-icon text-5xl" />
+					<div class="text-5xl font-bold">Register</div>
 				</div>
 			</div>
 		</div>
@@ -89,7 +87,7 @@
 
 			<Form.Field {form} name="password">
 				<Form.Control let:attrs>
-					<Form.Label>Password</Form.Label>
+					<Form.Label>Passwort</Form.Label>
 					<Input {...attrs} type="password" bind:value={$formData.password} />
 				</Form.Control>
 				<Form.FieldErrors />
@@ -97,7 +95,7 @@
 
 			<Form.Field {form} name="passwordConfirm">
 				<Form.Control let:attrs>
-					<Form.Label>Confirm Password</Form.Label>
+					<Form.Label>Passwort wiederholen</Form.Label>
 					<Input {...attrs} type="password" bind:value={$formData.passwordConfirm} />
 				</Form.Control>
 				<Form.FieldErrors />
@@ -109,7 +107,6 @@
 						in:fade={{ duration: 500 }}
 						class="alert mb-2 flex rounded border border-primary p-2 text-sm"
 					>
-						<Icon icon="material-symbols:encrypted" class="h-10 w-10 text-primary" />
 						<div class="text-left">
 							Your password will be encrypted for your safety, it will not be readable by anyone.
 						</div>
@@ -118,17 +115,13 @@
 
 				<Form.Button disabled={isSubmitting} size="lg" class="group/sendButton w-full">
 					<div class="flex items-center gap-2">
-						<div class="lowercase">register</div>
-						<Icon
-							icon={`${isSubmitting ? 'mingcute:loading-fill' : 'mdi:plus'}`}
-							class={`${isSubmitting ? 'animate-spin' : ''} h-5 w-5 transition-transform duration-300 lg:group-hover/sendButton:rotate-90`}
-						/>
+						<div class="">Registrieren</div>
 					</div>
 				</Form.Button>
 			</div>
 
 			<p class="mt-5 text-center text-sm text-muted-foreground">
-				Already have an account? <a
+				Bereits einen Account? <a
 					href="/auth/login"
 					class="underline underline-offset-4 hover:text-primary">Login</a
 				>
