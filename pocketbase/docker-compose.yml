@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pocketbase
+    restart: unless-stopped
+    volumes:
+      - ./data:/pb_data
+      - ./public:/pb_public #optional
+      - ./hooks:/pb_hooks #optional
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefik_default'
+      - 'traefik.http.services.iuticketing.loadbalancer.server.port=8090'
+      - 'traefik.http.routers.iuticketing.rule=Host(`iu-ticketing.65software.dev`)'
+      - 'traefik.http.routers.iuticketing.entrypoints=websecure'
+      - 'traefik.http.routers.iuticketing.tls.certresolver=production'
+    healthcheck: #optional (recommended) since v0.10.0
+      test: wget --no-verbose --tries=1 --spider http://localhost:8090/api/health || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      default:
+
+networks:
+  default:
+    external: true
+    name: traefik_default
