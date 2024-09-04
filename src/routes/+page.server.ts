@@ -8,7 +8,7 @@ export const load = (async ({ locals }) => {
 		} else if (locals.user.type == 'teacher') {
 			throw redirect(302, 'teacher');
 		}
-	} else {
-		throw redirect(302, 'system-overview');
 	}
+
+	throw redirect(302, 'system-overview');
 }) satisfies PageServerLoad;

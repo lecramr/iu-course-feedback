@@ -6,7 +6,7 @@
 	import { pb } from '$lib/pocketbase';
 	import { currentUser } from '$lib/stores/user';
 	import { gsap } from 'gsap';
-	import { Lock, LogOut, PersonStanding } from 'lucide-svelte';
+	import { CircleUser, Key, LogOut } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 
 	function handleLogout() {
@@ -35,11 +35,7 @@
 	<DropdownMenu.Content class="mt-3 w-fit max-w-64 bg-background" align="end">
 		<DropdownMenu.Label class=" p-0">
 			<DropdownMenu.Item class="">
-				<a
-					href="/my/settings/profile"
-					data-sveltekit-preload-data="hover"
-					class="flex w-full items-center gap-2"
-				>
+				<div class="flex w-full items-center gap-2">
 					<div class="dropdown-menu-item">
 						<Avatar />
 					</div>
@@ -49,7 +45,7 @@
 							{$currentUser.email}
 						</p>
 					</div>
-				</a>
+				</div>
 			</DropdownMenu.Item>
 		</DropdownMenu.Label>
 		<DropdownMenu.Separator />
@@ -61,7 +57,7 @@
 					data-sveltekit-preload-data="hover"
 					class="flex w-full items-center"
 				>
-					<PersonStanding />
+					<CircleUser class="mr-2" />
 					<span>Account</span>
 				</a>
 			</DropdownMenu.Item>
@@ -72,8 +68,8 @@
 					data-sveltekit-preload-data="hover"
 					class="flex w-full items-center"
 				>
-					<Lock />
-					<span>Security</span>
+					<Key class="mr-2" />
+					<span>Sicherheit</span>
 				</a>
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
@@ -87,7 +83,7 @@
 				aria-label="Logout"
 			>
 				<button type="submit" class="flex w-full items-center">
-					<LogOut />
+					<LogOut class="mr-2" />
 					<span>Logout</span>
 				</button>
 			</form>
