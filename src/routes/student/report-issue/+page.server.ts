@@ -40,7 +40,7 @@ export const actions: Actions = {
 			body: form.data.description,
 			author: event.locals.user!.id,
 			course: form.data.courseId,
-			status: 'New',
+			status: 'Neu',
 			material: form.data.materialId,
 			assignee: courseTeacher,
 			lexoRank: LexoRank.parse(latestLexoRank).between(LexoRank.max()).toString(),
