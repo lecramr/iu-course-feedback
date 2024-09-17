@@ -54,6 +54,7 @@
 					// console.log('Login result:', result);
 					if (result.type === 'redirect' && result.location === '/') {
 						toast.success('Login Successful', {});
+						document.location.href = '/';
 					} else {
 						toast('Failed to Login', {
 							description: 'Please check your input and try again.'
