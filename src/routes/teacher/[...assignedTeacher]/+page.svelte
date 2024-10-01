@@ -107,7 +107,7 @@
 											{ticket.expand!.course.title}
 										</h2>
 
-										<div class="mt-2 max-h-6 overflow-scroll break-all text-sm">
+										<div class="mt-2 max-h-6 overflow-auto break-all text-sm">
 											{ticket.title}
 										</div>
 

@@ -16,7 +16,7 @@ export const load = (async ({ locals, params }) => {
 		)
 	});
 
-	const grouped = Object.groupBy(allTickets, ({ status }) => status);
+	const grouped = groupBy(allTickets, 'status');
 
 	const allTeachers = await locals.pb.collection('users').getFullList({
 		filter: locals.pb.filter('type ~ {:type}', { type: 'teacher' })
@@ -27,3 +27,15 @@ export const load = (async ({ locals, params }) => {
 		allTeacher: allTeachers
 	};
 }) satisfies PageServerLoad;
+
+type GroupedResult<T> = {
+	[key: string]: T[];
+};
+
+function groupBy<T>(array: T[], key: keyof T): GroupedResult<T> {
+	return array.reduce((result: GroupedResult<T>, currentValue: T) => {
+		const groupKey = currentValue[key] as unknown as string; // Type assertion to string
+		(result[groupKey] = result[groupKey] || []).push(currentValue);
+		return result;
+	}, {} as GroupedResult<T>);
+}
