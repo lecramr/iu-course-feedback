@@ -108,8 +108,12 @@
 							<Form.FieldErrors />
 						</Form.Field>
 
-						<Form.Button size="sm" class="float-right" disabled={!$commentTainted}
-							>Kommentar hinzufügen</Form.Button
+						<Form.Button
+							size="sm"
+							class="float-right"
+							disabled={!$commentTainted || $commentFormData.body === '<p></p>'}
+						>
+							Kommentar hinzufügen</Form.Button
 						>
 					</div>
 
