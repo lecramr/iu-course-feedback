@@ -12,6 +12,6 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 
 	return {
 		user: locals.user,
-		notifications: notifications
+		notifications: notifications.sort((a, b) => (a.created > b.created ? -1 : 1))
 	};
 };

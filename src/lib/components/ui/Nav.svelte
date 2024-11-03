@@ -56,7 +56,9 @@
 											!notification.isRead ? 'bg-gray-100' : ''
 										)}
 									>
-										<div class="text-xs font-semibold">{notification.title}</div>
+										<div class="text-xs {!notification.isRead ? 'font-semibold' : ''}">
+											{notification.title}
+										</div>
 										<div class="mt-2 text-xs">{@html notification.body}</div>
 									</div>
 								{/each}
