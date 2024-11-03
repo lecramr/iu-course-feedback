@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import TextEditor from '$lib/components/textEditor.svelte';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
@@ -20,16 +21,18 @@
 		validators: zodClient(editIncidentAsTeacherSchema),
 		resetForm: false,
 		multipleSubmits: 'prevent',
-		onResult: async (e) => {
+		onUpdated: async (e) => {
 			toast(`Die Änderungen wurden gespeichert!`);
+			await invalidateAll();
 		}
 	});
 	const { form: ticketFormData, enhance: ticketEnhance, tainted: ticketTainted } = editTicketForm;
 
 	const commentForm = superForm(serverCommentForm, {
 		validators: zodClient(addComment),
-		onResult: async (e) => {
+		onUpdated: async (e) => {
 			toast(`Der Kommentar wurde gespeichert!`);
+			await invalidateAll();
 		}
 	});
 

@@ -60,16 +60,9 @@
 				isSubmitting = true;
 
 				return async ({ result, update }) => {
-					// console.log('Reset Password result:', result);
-					if (result.type === 'redirect' && result.location === '/') {
-						toast('Login Successful', {
-							description: "Successfully logged in. You're now redirected to the homepage."
-						});
-					} else {
-						toast('Failed to Login', {
-							description: 'Please check your input and try again.'
-						});
-					}
+					toast.success(
+						'Wenn eine E-Mail gefunden wurde, wird eine Passwort-Zurücksetzungs-Mail gesendet.'
+					);
 
 					await update();
 					isSubmitting = false;

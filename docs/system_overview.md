@@ -245,3 +245,90 @@ graph LR
 - **Alerting**: Administratoren werden bei verdächtigen Aktivitäten automatisch benachrichtigt, um schnell auf mögliche Sicherheitsvorfälle reagieren zu können.
 
 ---
+
+# Änderungsverlauf und Versionsverwaltung
+
+Der **Änderungsverlauf und die Versionsverwaltung** dokumentieren alle Änderungen, neuen Funktionen, Bugfixes und Releases im **IU-Course-Feedback-System**. Diese Sektion beschreibt das Versionskontrollsystem, die Struktur des Änderungsprotokolls sowie den Workflow zur Nachverfolgung und Dokumentation von Änderungen.
+
+## 1. Versionskontrollsystem
+
+Das IU-Course-Feedback-System verwendet **Git** zur Versionsverwaltung. Der Quellcode wird in einem privaten **GitHub-Repository** gespeichert, das alle Änderungen und Versionen systematisch verfolgt.
+
+### Branching-Strategie
+
+Das Repository folgt einer einfachen Branching-Strategie:
+
+- **main**: Der stabile Hauptzweig, enthält ausschließlich getestete und freigegebene Versionen des Systems.
+- **development**: Hauptentwicklungszweig für neue Features und Bugfixes, bevor diese in den `main`-Branch integriert werden.
+- **feature/{feature-name}**: Temporäre Zweige für spezifische Features oder Änderungen, die nach Fertigstellung in `development` gemerged werden.
+
+```mermaid
+graph TD
+    A[main] -->|Release| B[development]
+    B --> C[feature/feature-name]
+    C --> B
+    B --> A
+```
+
+## Versionsnummerierung
+
+Das IU-Course-Feedback-System verwendet die **semantische Versionierung** (MAJOR.MINOR.PATCH):
+
+- **MAJOR**: Änderungen, die zu Inkompatibilitäten führen (z. B. umfangreiche Umstrukturierungen).
+- **MINOR**: Neue Features und Verbesserungen, die abwärtskompatibel sind.
+- **PATCH**: Kleine Änderungen und Bugfixes, die die Kompatibilität nicht beeinflussen.
+
+Beispiel: `v1.2.3` (MAJOR: 1, MINOR: 2, PATCH: 3)
+
+## Änderungsprotokoll
+
+### Struktur des Änderungsprotokolls
+
+Das Änderungsprotokoll wird in einer `CHANGELOG.md`-Datei im Repository dokumentiert. Jede Version enthält Einträge zu den hinzugefügten, geänderten und behobenen Funktionen. Die Einträge sind in Kategorien unterteilt:
+
+- **Added**: Neue Features und Funktionalitäten
+- **Changed**: Geänderte oder verbesserte Funktionen
+- **Fixed**: Behobene Fehler und Probleme
+- **Removed**: Entfernte oder veraltete Funktionen
+
+### Beispiel-Änderungsprotokoll
+
+```markdown
+## [1.3.0] - 2024-11-02
+
+### Added
+
+- Möglichkeit für Teachers, Tickets im Kanban-Board zu filtern
+- Erweiterung der Studentensicht mit Ticket-Kommentarfunktion
+
+### Changed
+
+- Aktualisierung des Shadcn-Svelte UI-Frameworks auf die neueste Version
+- Optimierung der Ladezeiten der Systemübersicht
+
+### Fixed
+
+- Fehler behoben, der bei der JWT-Erneuerung zu unbefugten Sitzungen führte
+- Anzeigeprobleme in der Teacher-Ansicht bei kleinen Bildschirmgrößen behoben
+```
+
+## Release-Workflow
+
+Der Release-Workflow für das IU-Course-Feedback-System stellt sicher, dass neue Features und Bugfixes kontrolliert entwickelt, getestet und schließlich als stabile Version veröffentlicht werden.
+
+1. **Feature-Entwicklung**: Neue Features oder Bugfixes werden in separaten `feature/{feature-name}`-Branches entwickelt. Dieser Ansatz ermöglicht eine isolierte und fokussierte Entwicklung, die unabhängig von anderen Änderungen stattfinden kann.
+2. **Pull Request (PR)**: Nach Abschluss der Entwicklung wird ein Pull Request (PR) in den `development`-Branch erstellt. Hier findet ein Code-Review statt, und automatisierte Tests werden ausgeführt, um sicherzustellen, dass die Änderungen keine bestehenden Funktionen beeinträchtigen.
+3. **Testing**: Sobald die Änderungen in den `development`-Branch integriert sind, werden alle relevanten Tests (Integrationstests, Funktionalitätstests) durchgeführt, um die Stabilität und Funktionalität der neuen Version zu bestätigen.
+4. **Release in `main`**: Wenn die Version im `development`-Branch stabil und vollständig getestet ist, wird ein PR für den `main`-Branch erstellt. Nach der Überprüfung wird die neue Version in `main` integriert und damit als offizielle Release-Version freigegeben.
+
+```mermaid
+graph LR
+    Dev[Feature-Branch] --> PR1[Pull Request zu development]
+    PR1 --> DevBranch[development]
+    DevBranch --> Test[Testing]
+    Test --> PR2[Pull Request zu main]
+    PR2 --> Release[main]
+    Release --> Tagging[Tagging als neue Version]
+```
+
+5. **Tagging und Release**: Jede neue Version im `main`-Branch wird mit einer Versionsnummer getaggt (z. B., v1.3.0). Die Änderungen werden in der CHANGELOG.md dokumentiert, damit alle Nutzer und Entwickler eine klare Übersicht über die neuen Features, Verbesserungen und Bugfixes haben.

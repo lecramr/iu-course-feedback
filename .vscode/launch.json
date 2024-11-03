@@ -5,7 +5,7 @@
 			"name": "Launch Server",
 			"request": "launch",
 			"runtimeArgs": ["run", "dev"],
-			"runtimeExecutable": "bun",
+			"runtimeExecutable": "pnpm",
 			"skipFiles": ["<node_internals>/**"],
 			"type": "node",
 			"console": "internalConsole"

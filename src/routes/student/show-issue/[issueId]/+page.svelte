@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import TextEditor from '$lib/components/textEditor.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Card from '$lib/components/ui/card/index.js';
@@ -12,21 +13,27 @@
 
 	export let data;
 
-	const editTicketForm = superForm(data.form, {
+	let editTicketForm = superForm(data.form, {
 		validators: zodClient(editIncidentSchema),
-		onResult: async (e) => {
+		onUpdated: async (e) => {
 			toast(`Die Änderungen wurden gespeichert!`);
+			await invalidateAll();
 		}
 	});
 	const { form: ticketFormData, enhance: ticketEnhance, tainted: ticketTainted } = editTicketForm;
 
-	const commentForm = superForm(data.commentForm, {
+	let commentFormForm = superForm(data.commentForm, {
 		validators: zodClient(addComment),
-		onResult: async (e) => {
+		onUpdated: async (e) => {
 			toast(`Der Kommentar wurde gespeichert!`);
+			await invalidateAll();
 		}
 	});
-	const { form: commentFormData, enhance: commentEnhance, tainted: commentTainted } = commentForm;
+	const {
+		form: commentFormData,
+		enhance: commentEnhance,
+		tainted: commentTainted
+	} = commentFormForm;
 </script>
 
 <div class="flex h-full w-full flex-col gap-4">
@@ -96,7 +103,7 @@
 			<form class="mt-12" method="POST" action="?/addcomment" use:commentEnhance>
 				<div class="flex w-full flex-col gap-6">
 					<div>
-						<Form.Field form={commentForm} name="body" class="w-full">
+						<Form.Field form={commentFormForm} name="body" class="w-full">
 							<Form.Control let:attrs>
 								<TextEditor
 									placeholder="Neuen Kommentar hinzufügen"
