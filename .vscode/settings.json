@@ -1,18 +1,2 @@
 {
-	"i18n-ally.localesPaths": ["src/lib/translations"],
-	"i18n-ally.namespace": true,
-	"i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
-	"i18n-ally.keepFulfilled": true,
-	"i18n-ally.keystyle": "nested",
-	"i18n-ally.keysInUse": [
-		"restrictions.employees.max",
-		"restrictions.provider.max.company",
-		"restrictions.provider.max.private",
-		"restrictions.profile.instantDownload",
-		"restrictions.profile.companyBackground",
-		"restrictions.profile.removeBranding",
-		"restrictions.profile.generalRedirection",
-		"restrictions.profile.useci",
-		"restrictions.unit.max"
-	]
 }
