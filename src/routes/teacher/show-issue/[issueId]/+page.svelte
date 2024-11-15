@@ -32,6 +32,9 @@
 		validators: zodClient(addComment),
 		onUpdated: async (e) => {
 			toast(`Der Kommentar wurde gespeichert!`);
+			if (commentEditor) {
+				commentEditor.resetValue();
+			}
 			await invalidateAll();
 		}
 	});
@@ -58,6 +61,8 @@
 				value: $ticketFormData.courseId
 			}
 		: undefined;
+
+	let commentEditor: TextEditor;
 </script>
 
 <div class="flex h-full w-full flex-col gap-4">
@@ -175,6 +180,7 @@
 								<TextEditor
 									placeholder="Neuen Kommentar hinzufügen"
 									bind:value={$commentFormData.body}
+									bind:this={commentEditor}
 									class="h-36"
 								/>
 								<input hidden bind:value={$commentFormData.body} name={attrs.name} />
@@ -200,7 +206,7 @@
 								class="float-right"
 								disabled={!$commentTainted || $commentFormData.body === '<p></p>'}
 							>
-								>Kommentar hinzufügen</Form.Button
+								Kommentar hinzufügen</Form.Button
 							>
 						</div>
 					</div>

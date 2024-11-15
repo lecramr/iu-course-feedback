@@ -31,7 +31,10 @@ export const actions: Actions = {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (err: any) {
 			console.log('Error: ', err);
-			throw error(err.status, err.message);
+			throw error(
+				err.status,
+				'Beim Anmelden ist ein Fehler aufgetreten. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.'
+			);
 		}
 
 		throw redirect(303, '/');

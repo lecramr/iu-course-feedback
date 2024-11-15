@@ -1,6 +1,6 @@
-import { error, fail, redirect } from '@sveltejs/kit';
 import { updatePasswordSchema } from '$lib/schema';
 import { validateData } from '$lib/utils';
+import { error, fail, redirect } from '@sveltejs/kit';
 
 export const load = ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {

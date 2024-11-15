@@ -110,18 +110,8 @@ export type AddComment = typeof addComment;
 export const updatePasswordSchema = z
 	.object({
 		oldPassword: z.string({ required_error: 'Old password is required' }),
-		password: z
-			.string({ required_error: 'Password is required' })
-			.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
-				message:
-					'Password must be a minimum of 8 characters & contain at least one letter, one number, and one special character.'
-			}),
-		passwordConfirm: z
-			.string({ required_error: 'Confirm Password is required' })
-			.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
-				message:
-					'Password must be a minimum of 8 characters & contain at least one letter, one number, and one special character.'
-			})
+		password: z.string({ required_error: 'Password is required' }),
+		passwordConfirm: z.string({ required_error: 'Confirm Password is required' })
 	})
 	.superRefine(({ passwordConfirm, password }, ctx) => {
 		if (passwordConfirm !== password) {

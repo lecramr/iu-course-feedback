@@ -15,16 +15,15 @@ export const load = (async ({ locals, params }) => {
 	let allComments: RecordModel[] = [];
 	if (requestedTicket.comments?.length > 0) {
 		allComments = await locals.pb.collection('comments').getFullList({
-			filter:
-				requestedTicket.comments
-					.map((id: string) => locals.pb.filter('id = {:id}', { id }))
-					.join('||') +
-				' ' +
-				locals.pb.filter('&& isInternal ~ false'),
+			filter: requestedTicket.comments
+				.map((id: string) => locals.pb.filter('id = {:id}', { id }))
+				.join('||'),
 			sort: '-created',
 			expand: 'author'
 		});
 	}
+
+	allComments = allComments.filter((x) => x.isInternal === false);
 
 	return {
 		form: await superValidate(zod(editIncidentSchema), {

@@ -38,6 +38,11 @@
 			quillEditor.on('text-change', handleQuillInput);
 		}
 	});
+
+	export function resetValue() {
+		console.log('we here');
+		quillEditor.setText('');
+	}
 </script>
 
 <div id="quill-editor-wrapper">
