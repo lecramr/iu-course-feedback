@@ -4,7 +4,7 @@
 
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
-	import { toast } from '$lib/stores/toast';
+	import { toast } from 'svelte-sonner';
 
 	export let form;
 	export let data;
@@ -18,23 +18,15 @@
 			switch (result.type) {
 				case 'success':
 					await invalidateAll();
-					toast.set({
-						show: true,
-						message: 'Email updated successfully',
-						type: 'bg-success',
-						icon: 'mdi:check'
-					});
-					setTimeout(() => toast.set({ show: false, message: '', type: '', icon: '' }), 2000);
+
+					toast(
+						'Bitte bestätigen Sie Ihre neue E-Mail-Adresse, indem Sie auf den Link klicken, den wir Ihnen gerade per E-Mail gesendet haben.'
+					);
 					break;
 				case 'error':
 					await invalidateAll();
-					toast.set({
-						show: true,
-						message: 'Email update failed',
-						type: 'error',
-						icon: 'mdi:alert-circle'
-					});
-					setTimeout(() => toast.set({ show: false, message: '', type: '', icon: '' }), 2000);
+
+					toast('Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
 					break;
 				default:
 					await applyAction(result);
@@ -58,6 +50,7 @@
 			<Input
 				id="email"
 				type="email"
+				name="email"
 				required={true}
 				placeholder={data?.user?.email}
 				value={form?.data?.email}
